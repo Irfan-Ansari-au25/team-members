@@ -93,8 +93,9 @@ export const registerInitiate = (name, email, password) => {
     dispatch(registerStart());
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log(user, "Sign Up Firebase");
+      .then(({ user }) => {
+        // user.updateProfile({ name });
+        // console.log(user, "Sign Up Firebase");
         dispatch(registerSuccess(user));
       })
       .catch((error) => {
