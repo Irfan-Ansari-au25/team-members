@@ -41,6 +41,25 @@ const loginFail = (error) => {
   };
 };
 
+const logoutStart = () => {
+  return {
+    type: types.LOGOUT_START,
+  };
+};
+
+const logoutSuccess = () => {
+  return {
+    type: types.LOGOUT_SUCCESS,
+  };
+};
+
+const logoutFail = (error) => {
+  return {
+    type: types.LOGOUT_FAIL,
+    payload: error,
+  };
+};
+
 export const registerInitiate = (name, email, password) => {
   return (dispatch) => {
     dispatch(registerStart());
@@ -67,6 +86,21 @@ export const loginInitiate = (email, password) => {
       })
       .catch((error) => {
         dispatch(loginFail(error.message));
+      });
+  };
+};
+
+export const logoutInitiate = () => {
+  return (dispatch) => {
+    dispatch(logoutStart());
+    auth
+      .signOut()
+      .then((res) => {
+        console.log(res, "LogOut response");
+        dispatch(logoutSuccess());
+      })
+      .catch((error) => {
+        dispatch(logoutFail(error.message));
       });
   };
 };
