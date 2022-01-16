@@ -4,8 +4,22 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import UserRoute from "./components/UserRoute";
+import { auth } from "./firebase";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/actions";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        dispatch(setUser(authUser));
+      } else {
+        dispatch(setUser(null));
+      }
+    });
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <div className='App'>

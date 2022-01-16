@@ -60,6 +60,13 @@ const logoutFail = (error) => {
   };
 };
 
+export const setUser = (user) => {
+  return {
+    type: types.SET_USER,
+    payload: user,
+  };
+};
+
 export const registerInitiate = (name, email, password) => {
   return (dispatch) => {
     dispatch(registerStart());

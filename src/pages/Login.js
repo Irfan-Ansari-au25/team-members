@@ -26,6 +26,13 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     loginInitiate(state.Email, state.Password)(dispatch);
+    setState((prevState) => {
+      return {
+        ...prevState,
+        Email: "",
+        Password: "",
+      };
+    });
   };
 
   const changeHandler = (e) => {
@@ -98,7 +105,7 @@ const Login = () => {
                         Password
                       </label>
                       <input
-                        type='text'
+                        type='password'
                         className='text-field-2'
                         name='Password'
                         placeholder='Password'
