@@ -1,16 +1,17 @@
 import * as types from "./actionTypes";
 
-const buyCake = () => {
+const deleteMember = (id) => {
   return {
-    type: types.BUY_CAKE,
+    type: types.DELETE_MEMBER,
+    payload: id,
   };
 };
 
-export const addCake = (cakes) => {
+export const addMember = (members) => {
   return {
-    type: types.ADD_CAKE,
-    payload: cakes,
+    type: types.ADD_MEMBER,
+    payload: members,
   };
 };
 
-export default buyCake;
+export default deleteMember;

@@ -38,12 +38,14 @@ const initialState = {
 const memberReducer = (state = initialState, action) => {
   //   console.log("action from", action);
   switch (action.type) {
-    case types.BUY_CAKE:
+    case types.DELETE_MEMBER:
       return {
         ...state,
-        noOfCakes: state.noOfCakes - 1,
+        allMemebrs: [...state.allMemebrs].filter((member) => {
+          return member.id !== action.payload;
+        }),
       };
-    case types.ADD_CAKE:
+    case types.ADD_MEMBER:
       return {
         ...state,
         allMemebrs: [...state.allMemebrs, action.payload],

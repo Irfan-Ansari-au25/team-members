@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutInitiate } from "../redux/actions";
-import { useEffect, useState } from "react";
-import buyCake, { addCake } from "../redux/memberAction";
+import { useState } from "react";
+
 import Modal from "../components/Modal";
 import "./Home.css";
 import Container from "./Container";
@@ -97,7 +97,7 @@ const Home = () => {
             display: "inline-block",
           }}
         >
-          Log Out
+          Logout
         </div>
       </div>
       <Container onOpen={openHandler}></Container>

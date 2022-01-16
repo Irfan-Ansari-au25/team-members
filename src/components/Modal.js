@@ -3,7 +3,7 @@ import "./modal.css";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useEffect } from "react";
-import buyCake, { addCake } from "../redux/memberAction";
+import { addMember } from "../redux/memberAction";
 
 const Modal = (props) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -47,7 +47,7 @@ const Modal = (props) => {
     //   };
     // });
     ///// update to redux
-    dispatch(addCake(state));
+    dispatch(addMember(state));
     props.onClick(false);
   };
 

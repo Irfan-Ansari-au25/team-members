@@ -16,5 +16,5 @@ export const GOOGLE_SIGN_IN_START = "GOOGLE_SIGN_IN_START";
 export const GOOGLE_SIGN_IN_SUCCESS = "GOOGLE_SIGN_IN_SUCCESS";
 export const GOOGLE_SIGN_IN_FAIL = "GOOGLE_SIGN_IN_FAIL";
 
-export const BUY_CAKE = "BUY_CAKE";
-export const ADD_CAKE = "ADD_CAKE";
+export const DELETE_MEMBER = "DELETE_MEMBER ";
+export const ADD_MEMBER = "ADD_MEMBER";

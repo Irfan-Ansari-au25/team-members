@@ -82,6 +82,7 @@ const Container = (props) => {
                   return (
                     <Table
                       key={member.id}
+                      id={member.id}
                       name={member.name}
                       company={member.company}
                       notes={member.notes}

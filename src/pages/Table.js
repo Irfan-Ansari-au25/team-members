@@ -1,10 +1,34 @@
 import React from "react";
 import cross from "../assets/images/close-2.svg";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import deleteMember from "../redux/memberAction";
 
 const Table = (props) => {
+  const elRef = useRef();
+  const dispatch = useDispatch();
+
+  const findIDHandler = () => {
+    // got the id
+    const { current } = elRef;
+    console.log(current.id, "ref");
+    return current.id;
+  };
+  const deleteMemberHandler = (e) => {
+    e.stopPropagation();
+    findIDHandler();
+    const curID = findIDHandler();
+    ////dispatch id
+    dispatch(deleteMember(curID));
+  };
   return (
     <>
-      <div className='table-row color'>
+      <div
+        className='table-row color'
+        id={props.id}
+        onClick={findIDHandler}
+        ref={elRef}
+      >
         <div className='div-block-406 _2'>
           <div className='form-block w-form'>
             <form
@@ -50,7 +74,11 @@ const Table = (props) => {
             <div>{props.status ? "Active" : "Closed"}</div>
           </div>
         </div>
-        <div className='table-box _2 action'>
+        <div
+          className='table-box _2 action'
+          style={{ cursor: "pointer" }}
+          onClick={deleteMemberHandler}
+        >
           <div
             data-w-id='ae27a065-dfeb-a9cb-56ca-8b63a99081be'
             className='link-block-10 w-inline-block'
