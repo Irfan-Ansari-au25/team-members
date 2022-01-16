@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { loginInitiate } from "../redux/actions";
+import { googleSignInInitiate, loginInitiate } from "../redux/actions";
 import glogo from "../assets/images/G.png";
 import fblogo from "../assets/images/facebook.png";
 
@@ -25,7 +25,9 @@ const Login = () => {
   // submit handler
   const submitHandler = (e) => {
     e.preventDefault();
+    /// dispatching to redux store
     loginInitiate(state.Email, state.Password)(dispatch);
+    //clearing fields
     setState((prevState) => {
       return {
         ...prevState,
@@ -44,7 +46,8 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    console.log("google");
+    // console.log("google");
+    googleSignInInitiate()(dispatch);
   };
 
   const handleFacebookSignIn = () => {

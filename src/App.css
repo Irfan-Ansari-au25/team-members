@@ -236,6 +236,7 @@ input {
   background-color: #009da3;
   font-size: 16px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .block-2 {
@@ -360,6 +361,7 @@ input {
   -webkit-transition: box-shadow 200ms ease, background-color 200ms ease;
   transition: box-shadow 200ms ease, background-color 200ms ease;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .social-login:hover {

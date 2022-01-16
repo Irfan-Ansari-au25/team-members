@@ -1,5 +1,5 @@
 import * as types from "./actionTypes";
-import { auth } from "../firebase";
+import { auth, googleAuthProvider } from "../firebase";
 
 const registerStart = () => {
   return {
@@ -67,6 +67,27 @@ export const setUser = (user) => {
   };
 };
 
+//google auth
+const googleSignInStart = () => {
+  return {
+    type: types.GOOGLE_SIGN_IN_START,
+  };
+};
+
+const googleSignInSuccess = (user) => {
+  return {
+    type: types.GOOGLE_SIGN_IN_SUCCESS,
+    payload: user,
+  };
+};
+
+const googleSignInFail = (error) => {
+  return {
+    type: types.GOOGLE_SIGN_IN_FAIL,
+    payload: error,
+  };
+};
+
 export const registerInitiate = (name, email, password) => {
   return (dispatch) => {
     dispatch(registerStart());
@@ -108,6 +129,21 @@ export const logoutInitiate = () => {
       })
       .catch((error) => {
         dispatch(logoutFail(error.message));
+      });
+  };
+};
+
+export const googleSignInInitiate = () => {
+  return (dispatch) => {
+    dispatch(googleSignInStart());
+    auth
+      .signInWithPopup(googleAuthProvider)
+      .then((user) => {
+        console.log(user, "Sign In Google Firebase");
+        dispatch(googleSignInSuccess(user));
+      })
+      .catch((error) => {
+        dispatch(googleSignInFail(error.message));
       });
   };
 };
