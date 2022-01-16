@@ -1,31 +1,48 @@
-import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useHistory, Link } from "react-router-dom"
-import glogo from "../assets/images/G.png"
-import fblogo from "../assets/images/facebook.png"
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+import { loginInitiate } from "../redux/actions";
+import glogo from "../assets/images/G.png";
+import fblogo from "../assets/images/facebook.png";
 
 const Login = () => {
   const [state, setState] = useState({
-    email: "",
-    password: "",
-  })
-  const submitHandler = (e) => {
-    e.preventDefault()
+    Email: "",
+    Password: "",
+  });
 
-    console.log("submitted")
-  }
+  const { currentUser } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // Navigate to home page after register
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
+
+  // submit handler
+  const submitHandler = (e) => {
+    e.preventDefault();
+    loginInitiate(state.Email, state.Password)(dispatch);
+  };
 
   const changeHandler = (e) => {
-    console.log(e.target.value)
-  }
+    let { name, value } = e.target;
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
 
   const handleGoogleSignIn = () => {
-    console.log("google")
-  }
+    console.log("google");
+  };
 
   const handleFacebookSignIn = () => {
-    console.log("facebook")
-  }
+    console.log("facebook");
+  };
 
   return (
     <>
@@ -109,7 +126,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
