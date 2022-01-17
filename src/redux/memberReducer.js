@@ -22,7 +22,7 @@ const initialState = {
       id: "3",
       name: "Jlatan ",
       company: "Delta exchange",
-      status: false,
+      status: true,
       lastUpdated: "03-03-2014",
       notes: "From phoreka",
     },
@@ -43,6 +43,13 @@ const memberReducer = (state = initialState, action) => {
         ...state,
         allMemebrs: [...state.allMemebrs].filter((member) => {
           return member.id !== action.payload;
+        }),
+      };
+    case types.FILTER_MEMBER:
+      return {
+        ...state,
+        allMemebrs: [...state.allMemebrs].filter((member) => {
+          return member.company === action.payload;
         }),
       };
     case types.ADD_MEMBER:

@@ -18,3 +18,4 @@ export const GOOGLE_SIGN_IN_FAIL = "GOOGLE_SIGN_IN_FAIL";
 
 export const DELETE_MEMBER = "DELETE_MEMBER ";
 export const ADD_MEMBER = "ADD_MEMBER";
+export const FILTER_MEMBER = "FILTER_MEMBER";

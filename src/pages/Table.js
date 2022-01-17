@@ -24,7 +24,7 @@ const Table = (props) => {
   return (
     <>
       <div
-        className='table-row color'
+        className={`table-row ${props.status ? "color" : ""}`}
         id={props.id}
         onClick={findIDHandler}
         ref={elRef}

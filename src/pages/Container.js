@@ -1,8 +1,19 @@
 import "./Home.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 import Table from "./Table";
 const Container = (props) => {
+  const { currentUser } = useSelector((state) => state.user);
+  const [select, setSelect] = useState("DC United");
+  const dispatch = useDispatch(select);
+
+  console.log("curentuser", currentUser.email);
+  //Bug Here
+  const displayName = !currentUser.multiFactor.user.providerData[0].displayName
+    ? currentUser.email
+    : currentUser.multiFactor.user.providerData[0].displayName;
+
   //   console.log(props);
   const addClickHandler = () => {
     props.onOpen(true);
@@ -16,34 +27,44 @@ const Container = (props) => {
   });
   console.log(noOfmembers, "from COntainer");
 
+  const selectHandler = (e) => {
+    setSelect(e.target.value);
+    console.log("select:", select);
+    /// dispatch
+    dispatch(select);
+  };
+
   return (
     <>
       <div className='wrapper-section wf-section'>
         <div className='div-1'>
-          <h1 className='heading-3'>Hi,</h1>
+          <h1 className='heading-3'>{`Hi, ${
+            displayName ? displayName : "User"
+          }`}</h1>
           <div className='text-block-2'>Welcome to TEAM MEMBER</div>
         </div>
         <div className='div-block-416'>
           <div className='form-block-2 w-form'>
-            <form
-              id='email-form-2'
-              name='email-form-2'
-              data-name='Email Form 2'
-              method='get'
+            <select
+              id='field'
+              name='field'
+              data-name='Field'
+              onChange={selectHandler}
+              value={select}
             >
-              <select
-                id='field'
-                name='field'
-                data-name='Field'
-                className='select-field w-select'
-              >
-                <option value=''>Select one...</option>
-                <option value='First'>First choice</option>
-                <option value='Second'>Second choice</option>
-                <option value='Third'>Third choice</option>
-                <option value='Another option'>Another option</option>
-              </select>
-            </form>
+              <option value='DC United'>Select All</option>
+              {noOfmembers &&
+                noOfmembers.map((member) => {
+                  return (
+                    <option
+                      key={Math.random().toString()}
+                      value={member.company}
+                    >
+                      {member.company}
+                    </option>
+                  );
+                })}
+            </select>
           </div>
           <div className='btn'>
             <div className='text-block' onClick={addClickHandler}>

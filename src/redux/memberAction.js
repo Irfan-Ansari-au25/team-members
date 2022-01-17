@@ -7,6 +7,13 @@ const deleteMember = (id) => {
   };
 };
 
+export const filterMember = (company) => {
+  return {
+    type: types.FILTER_MEMBER,
+    payload: company,
+  };
+};
+
 export const addMember = (members) => {
   return {
     type: types.ADD_MEMBER,
